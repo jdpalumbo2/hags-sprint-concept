@@ -8,6 +8,13 @@
       "when": 1775586969289,
       "tag": "0000_tricky_miss_america",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1775613838262,
+      "tag": "0001_material_killer_shrike",
+      "breakpoints": true
     }
   ]
 }

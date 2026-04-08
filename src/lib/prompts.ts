@@ -12,3 +12,12 @@ export async function loadPrompt(name: string, fresh = false): Promise<string> {
   cache.set(name, content);
   return content;
 }
+
+export function renderPrompt(
+  template: string,
+  vars: Record<string, string | number>
+): string {
+  return template.replace(/\{\{(\w+)\}\}/g, (_, key) => {
+    return key in vars ? String(vars[key]) : `{{${key}}}`;
+  });
+}

@@ -1,4 +1,12 @@
-import { pgTable, uuid, text, timestamp, pgEnum } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  uuid,
+  text,
+  timestamp,
+  pgEnum,
+  integer,
+  jsonb,
+} from "drizzle-orm/pg-core";
 
 export const businessTypeEnum = pgEnum("business_type", [
   "product",
@@ -33,3 +41,19 @@ export const teams = pgTable("teams", {
 
 export type Team = typeof teams.$inferSelect;
 export type NewTeam = typeof teams.$inferInsert;
+
+export const sprints = pgTable("sprints", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  teamId: uuid("team_id")
+    .notNull()
+    .references(() => teams.id, { onDelete: "cascade" }),
+  personCount: integer("person_count").notNull(),
+  learningQuestion: text("learning_question").notNull(),
+  testType: text("test_type").notNull(),
+  planJson: jsonb("plan_json").notNull(),
+  status: text("status").notNull().default("in_progress"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type Sprint = typeof sprints.$inferSelect;
+export type NewSprint = typeof sprints.$inferInsert;

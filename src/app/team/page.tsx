@@ -50,6 +50,13 @@ export default async function TeamPage() {
           <LogoutButton />
         </div>
 
+        <Link
+          href="/sprint/new"
+          className={cn(buttonVariants({ size: "lg" }), "w-full justify-center")}
+        >
+          Start a sprint
+        </Link>
+
         <Card>
           <CardHeader>
             <CardTitle>Business context</CardTitle>
