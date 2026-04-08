@@ -121,7 +121,7 @@ export default function SignupPage() {
                 required
               />
               <p className="text-xs text-muted-foreground">
-                Pick something your team will remember. Not a password.
+                Pick something your team will remember. Not a password. You'll set this now but passcode check is currently off.
               </p>
             </div>
 

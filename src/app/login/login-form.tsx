@@ -51,15 +51,17 @@ export function LoginForm({ teams }: { teams: Team[] }) {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="passcode">Passcode</Label>
+        <Label htmlFor="passcode">Passcode (currently disabled)</Label>
         <Input
           id="passcode"
           type="password"
           value={passcode}
           onChange={(e) => setPasscode(e.target.value)}
           placeholder="Team passcode"
-          required
         />
+        <p className="text-xs text-muted-foreground">
+          Passcode check is temporarily off. Just pick your team and log in.
+        </p>
       </div>
 
       {error && <p className="text-sm text-destructive">{error}</p>}
