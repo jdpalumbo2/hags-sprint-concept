@@ -6,13 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { TeamCombobox } from "./team-combobox";
 
 interface Team {
   id: string;
@@ -52,19 +46,8 @@ export function LoginForm({ teams }: { teams: Team[] }) {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="team-select">Your team</Label>
-        <Select value={teamName} onValueChange={(val) => setTeamName(val ?? "")}>
-          <SelectTrigger id="team-select" className="w-full">
-            <SelectValue placeholder="Pick your team" />
-          </SelectTrigger>
-          <SelectContent>
-            {teams.map((t) => (
-              <SelectItem key={t.id} value={t.teamName}>
-                {t.teamName}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <Label>Your team</Label>
+        <TeamCombobox teams={teams} value={teamName} onChange={setTeamName} />
       </div>
 
       <div className="flex flex-col gap-1.5">

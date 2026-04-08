@@ -1,17 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { db } from "@/db";
 import { LoginForm } from "./login-form";
+
+export const dynamic = "force-dynamic";
 
 async function getTeams() {
   try {
-    const baseUrl = process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000";
-    const res = await fetch(`${baseUrl}/api/teams/list`, {
-      cache: "no-store",
+    return await db.query.teams.findMany({
+      columns: { id: true, teamName: true },
+      orderBy: (t, { asc }) => [asc(t.teamName)],
     });
-    if (!res.ok) return [];
-    const data = await res.json();
-    return data.teams ?? [];
   } catch {
     return [];
   }
