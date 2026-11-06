@@ -4,6 +4,8 @@ A classroom tool for high school incubator students to run focused 45-minute MVP
 
 Built for Hags (Uncharted Learning incubator teacher) for in-class "pop-up sprint" days.
 
+**Status: prototype, paused mid-build since 2026-04-07 (Phase 2 of 6, see `GAMEPLAN.md` and `/prompts/`). Not in use by real students yet.** Hosting is wired up (Vercel + Railway Postgres) but this is not a production system.
+
 ## Core Constraints (Non-Negotiable)
 
 1. **No PII storage.** Students are minors. Never store names, emails, photos, or any personally identifiable information about team members. When the app needs to assign work, it uses "Person 1, Person 2, Person 3..." with role descriptors like "marketing-leaning" or "ops-leaning". Never ask for names. If a student types a name into a free-text field, do not persist it in any structured way.
@@ -38,6 +40,13 @@ Built for Hags (Uncharted Learning incubator teacher) for in-class "pop-up sprin
 - **Auth:** Team dropdown + passcode (no individual user accounts, no PII)
 - **Styling:** Tailwind + shadcn/ui for clean classroom-friendly UI
 - **No streaming for V1.** Wait for the full Claude response and render it. Add streaming later if it matters.
+
+## Commands
+
+pnpm is the package manager (lockfile is `pnpm-lock.yaml`); do not switch.
+
+- `pnpm dev` / `pnpm build` / `pnpm lint`
+- `pnpm db:generate` / `pnpm db:migrate` / `pnpm db:studio` (Drizzle Kit; needs `DATABASE_URL` in `.env.local`)
 
 ## Project Conventions
 
@@ -114,3 +123,6 @@ Second prompt: the auto-grade pass. Lives in `/prompts/auto-grade.md`. Lightweig
 - Export to Google Sheets
 - Email notifications
 - Mobile-optimized layout (desktop-first for classroom Chromebooks)
+
+## Extended context (vault)
+Engagement knowledge, meeting takeaways, and decision history live at `~/vault/business/clients/uncharted-learning/`. Read the landing note there before structural changes. Signed contracts/legal live in `~/secure`. Never read or copy from there in an agent session.
