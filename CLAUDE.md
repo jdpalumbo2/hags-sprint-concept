@@ -4,7 +4,7 @@ A classroom tool for high school incubator students to run focused 45-minute MVP
 
 Built for Hags (Uncharted Learning incubator teacher) for in-class "pop-up sprint" days.
 
-**Status: prototype, paused mid-build since 2026-04-07 (Phase 2 of 6, see `GAMEPLAN.md` and `/prompts/`). Not in use by real students yet.** Hosting is wired up (Vercel + Railway Postgres) but this is not a production system.
+**Status: prototype, paused mid-build since 2026-04-07 (Phase 2 of 6, see `GAMEPLAN.md` and `/prompts/`). Not in use by real students yet.** The Railway Postgres was deleted on 2026-11-06 (UCL-4, Black October): its April test data is kept as a pg_dump in Johnny's backups staging folder, named hags-sprint-concept-postgres-2026-11-06.dump. The Vercel project may still exist. Resuming the build means a fresh database and a new `DATABASE_URL`; the one in `.env.local` points at nothing.
 
 ## Core Constraints (Non-Negotiable)
 
@@ -36,7 +36,7 @@ Built for Hags (Uncharted Learning incubator teacher) for in-class "pop-up sprin
 - **Framework:** Next.js 15 (App Router) + TypeScript
 - **Database:** PostgreSQL on Railway, accessed via Drizzle ORM
 - **AI:** Anthropic SDK, model `claude-sonnet-4-6`
-- **Hosting:** Vercel (frontend) + Railway (Postgres). Both wired up from day one, no local-only phase.
+- **Hosting:** Vercel (frontend) + Railway (Postgres, deleted 2026-11-06; see the status line). Both were wired up from day one, no local-only phase.
 - **Auth:** Team dropdown + passcode (no individual user accounts, no PII)
 - **Styling:** Tailwind + shadcn/ui for clean classroom-friendly UI
 - **No streaming for V1.** Wait for the full Claude response and render it. Add streaming later if it matters.
